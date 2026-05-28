@@ -35,6 +35,15 @@ export default function SushiDashboard() {
     { name: 'Зебры', value: 24 },
   ];
 
+const floatingSushi = [
+  { emoji: "🍣", left: "5%", delay: "0s", size: "text-4xl" },
+  { emoji: "🍱", left: "20%", delay: "2s", size: "text-5xl" },
+  { emoji: "🥢", left: "40%", delay: "4s", size: "text-3xl" },
+  { emoji: "🍤", left: "60%", delay: "1s", size: "text-4xl" },
+  { emoji: "🍥", left: "80%", delay: "3s", size: "text-5xl" },
+  { emoji: "✨", left: "90%", delay: "5s", size: "text-2xl" },
+];
+
   const visitGoals = [
     { label: 'С друзьями', value: 177 },
     { label: 'Не готовить', value: 79 },
@@ -79,6 +88,41 @@ export default function SushiDashboard() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-950 via-zinc-950 to-orange-950 text-white overflow-hidden relative p-6 md:p-10">
+     <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+  <div className="absolute top-[10%] left-[10%] text-6xl opacity-20 animate-bounce">
+    🍣
+  </div>
+
+  <div className="absolute top-[30%] right-[15%] text-5xl opacity-20 animate-pulse">
+    🍤
+  </div>
+
+  <div className="absolute bottom-[20%] left-[30%] text-6xl opacity-20 animate-bounce">
+    🍱
+  </div>
+
+  <div className="absolute bottom-[10%] right-[20%] text-4xl opacity-20 animate-pulse">
+    ✨
+  </div>
+</div>
+     <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+  {floatingSushi.map((item, index) => (
+    <div
+      key={index}
+      className={`absolute animate-bounce ${item.size} opacity-20`}
+      style={{
+        left: item.left,
+        top: `${10 + index * 12}%`,
+        animationDelay: item.delay,
+        animationDuration: `${6 + index}s`,
+        filter: "drop-shadow(0 0 15px rgba(255,255,255,0.5))",
+      }}
+    >
+      {item.emoji}
+    </div>
+  ))}
+</div>
+     
       <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_top_left,_#ff4d6d,_transparent_30%),radial-gradient(circle_at_bottom_right,_#ffb703,_transparent_30%)]" />
 
       <div className="absolute top-10 left-10 text-8xl opacity-10 animate-pulse">
